@@ -13,7 +13,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model Appoiment {
+model Appointment {
   id String @id @default(cuid())
   tutorName String
   petName String
