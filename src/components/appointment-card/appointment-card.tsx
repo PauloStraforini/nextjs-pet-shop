@@ -1,12 +1,19 @@
+import { cn } from "@/lib/utils"
 import { Appointment } from "@/types/appointment"
 
 type appointmentCardProps = {
     appointment: Appointment
+    isFirstInSection?: boolean
 }
 
-export const AppointmentCard = ({ appointment }: appointmentCardProps) => {
+export const AppointmentCard = ({ appointment, isFirstInSection = false }: appointmentCardProps) => {
     return (
-        <div>
+        <div
+            className={cn(
+                "grid grid-cols-2 md:grid-cols-[15%_35%_30%_20%] items-center py-3",
+                !isFirstInSection && "border-t border-border-divisor"
+            )}
+        >
             <div className="textt-left pr-4 md:pr-0">
                 <span className="text-label-small text-content-primary font-semibold">
                     {appointment.time}
