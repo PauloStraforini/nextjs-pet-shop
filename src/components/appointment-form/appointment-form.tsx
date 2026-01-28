@@ -45,6 +45,7 @@ import {
 } from '../ui/select';
 import { toast } from 'sonner';
 import { createAppointment } from '@/app/actions';
+import { useState } from 'react';
 
 const appointmentFormSchema = z
     .object({
@@ -79,6 +80,9 @@ const appointmentFormSchema = z
 type AppointFormValues = z.infer<typeof appointmentFormSchema>;
 
 export const AppointmentForm = () => {
+
+    const [isOpen, setIsOpen] = useState(false)
+
     const form = useForm<AppointFormValues>({
         resolver: zodResolver(appointmentFormSchema),
         defaultValues: {
@@ -108,12 +112,12 @@ export const AppointmentForm = () => {
         }
 
         toast.success(`Agendamento criado com sucesso!`);
-
+        setIsOpen(false)
         form.reset()
     };
 
     return (
-        <Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button variant="brand">Novo Agendamento</Button>
             </DialogTrigger>
