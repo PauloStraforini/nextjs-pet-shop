@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -33,7 +32,7 @@ import {
     User,
 } from 'lucide-react';
 import { IMaskInput } from 'react-imask';
-import { format, min, setHours, setMinutes, startOfToday } from 'date-fns';
+import { format, setHours, setMinutes, startOfToday } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { cn } from '@/lib/utils';
 import { Calendar } from '../ui/calendar';
@@ -45,6 +44,7 @@ import {
     SelectValue,
 } from '../ui/select';
 import { toast } from 'sonner';
+import { createAppointment } from '@/app/actions';
 
 const appointmentFormSchema = z
     .object({
@@ -91,13 +91,18 @@ export const AppointmentForm = () => {
         },
     });
 
-    const onSubmit = (data: AppointFormValues) => {
-        const [hour, minute] = data.time.split(":")
+    const onSubmit = async (data: AppointFormValues) => {
+        const [hour, minute] = data.time.split(':');
 
-        const scheduleAt = new Date(data.scheduleAt)
-        scheduleAt.setHours(Number(hour), Number(minute), 0, 0)
+        const scheduleAt = new Date(data.scheduleAt);
+        scheduleAt.setHours(Number(hour), Number(minute), 0, 0);
 
-        toast.success(`Agendamento criado com sucesso`)
+        await createAppointment({
+            ...data,
+            scheduleAt,
+        });
+
+        toast.success(`Agendamento criado com sucesso!`);
 
         console.log(data);
     };
