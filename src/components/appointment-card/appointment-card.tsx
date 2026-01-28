@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import { Appointment } from '@/types/appointment';
 import { AppointmentForm } from '../appointment-form/appointment-form';
