@@ -101,7 +101,7 @@ export const AppointmentCard = ({
                                 {isDeleting && (
                                     <LoadingIcon className='mr-2 h-4 ww-4 animete-spin' />
                                 )}
-                                Confirmar romocao
+                                Confirmar remocao
                             </AlertDialogAction>
                         </AlertDialogFooter>
                     </AlertDialogContent>
