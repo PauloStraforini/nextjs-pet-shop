@@ -12,7 +12,7 @@ export const Logo = () => {
             </div>
 
             <span className="text-label-large-size font-bold text-content-brand">
-                MUNDO DOS PET'S
+                MUNDO DOS PETS
             </span>
         </Link>
     );
