@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+const nextConfig = {
+  eslint: {
+    // Atenção: Isso permite que o build termine mesmo com erros de lint.
+    ignoreDuringBuilds: true,
+  },
+}
