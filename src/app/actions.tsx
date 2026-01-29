@@ -20,7 +20,12 @@ export async function createAppointment(data: AppointmentData) {
         const parsedData = appointmentSchema.parse(data);
 
         const { scheduleAt } = parsedData;
-        const hour = scheduleAt.getHours();
+        const hour = parseInt(scheduleAt.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: 'America/Sao_Paulo'
+        }))
 
         const { isMorning, isAfternoon, isEvening } = calculatePeriod(hour)
 
@@ -63,7 +68,12 @@ export async function updateAppointment(id: string, data: AppointmentData) {
         const parsedData = appointmentSchema.parse(data);
 
         const { scheduleAt } = parsedData;
-        const hour = scheduleAt.getHours();
+        const hour = parseInt(scheduleAt.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+            timeZone: 'America/Sao_Paulo'
+        }))
 
         const { isMorning, isAfternoon, isEvening } = calculatePeriod(hour)
 
